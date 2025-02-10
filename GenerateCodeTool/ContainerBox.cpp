@@ -53,9 +53,11 @@ void ContainerBox::OnPaint(IRenderTarget* pRT)
 
 	if (m_sstrCodeType == L"BARCODE_CODE128")
 	{
-// 		struct zint_symbol* symbol;
-// 		symbol = ZBarcode_Create();
-// 		symbol->symbology = BARCODE_CODE128;
+		struct zint_symbol* symbol;
+		symbol = ZBarcode_Create();
+		symbol->symbology = BARCODE_CODE128;
+		symbol->input_mode = DATA_MODE; //数据编码格式
+		//symbol->option_1 = 0;   //0 自动选择子集、1 强制使用子集A、2 强制使用子集B、3 强制使用子集C
 
 		COLORREF clrBkgnd = GETCOLOR(L"RGB(0,255,0)");
 		CAutoRefPtr<IBrush> brush, oldbrush;
