@@ -8,8 +8,29 @@
 
 
   <style>
-    <class name="normalbtn" font="" colorText="#385e8b" colorTextDisable="#91a7c0" textMode="0x25" cursor="hand" margin-x="0"/>
-    <class name="cls_btn_weblink" cursor="hand" colorText="#1e78d5" colorTextHover="#1e78d5" font="italic:1" fontHover="underline:1,italic:1" />
+    <class name="normalbtn" 
+		   font="" 
+		   colorText="#385e8b" 
+		   colorTextDisable="#91a7c0" 
+		   textMode="0x25" 
+		   cursor="hand" 
+		   margin-x="0"/>
+    <class name="cls_btn_weblink" 
+		   cursor="hand" 
+		   colorText="#1e78d5" 
+		   colorTextHover="#1e78d5" 
+		   font="italic:1" 
+		   fontHover="underline:1,italic:1" />
+
+	  <class name="caption_top_border" colorBorder="rgba(0,0,0,50)" margin="0,1,0,0" />
+	  <class name="caption_bottom_border" colorBorder="rgba(0,0,0,50)" margin="0,0,0,1" />
+	  <class name="caption_left_border" colorBorder="rgba(0,0,0,50)" margin="1,0,0,0" />
+	  <class name="caption_right_border" colorBorder="rgba(0,0,0,50)" margin="0,0,1,0" />
+	  <class name="caption_border" colorBorder="rgba(0,0,0,50)" margin="1,1,1,1" />
+	  
+	  <class name="cls_edit_border" colorBorder="rgba(0,0,0,50)" margin="1,1,1,2" />
+	  <class name="cls_lvborder" ncSkin="_skin.sys.border" margin="1,0,1,1" />
+	  <class name="cls_edit" ncSkin="_skin.sys.border" margin-x="1" margin-y="2" />
   </style>
 
   <objattr>

@@ -1,21 +1,75 @@
-﻿<SOUI name="mainWindow" title="@string/title" bigIcon="ICON_LOGO:32" smallIcon="ICON_LOGO:16" margin="5,5,5,5"  resizable="1" wndType="appMain"
-appWnd="1"
-translucent="1" 
-trCtx="dlg_main"
->
-  <root skin="_skin.sys.wnd.bkgnd" cache="1"  width="600" height="400" >
-    <caption pos="0,0,-0,30" show="1" font="adding:0">
-      <icon pos="10,8" src="ICON_LOGO:16"/>
-      <text pos="29,9">@string/title</text>
-      <imgbtn name="btn_close" skin="_skin.sys.btn.close"    pos="-45,0" tip="close" animate="1"/>
-      <imgbtn name="btn_max" skin="_skin.sys.btn.maximize"  pos="-83,0" animate="1" />
-      <imgbtn name="btn_restore" skin="_skin.sys.btn.restore"  pos="-83,0" show="0" animate="1" />
-      <imgbtn name="btn_min" skin="_skin.sys.btn.minimize" pos="-121,0" animate="1" />
+﻿<SOUI trCtx="dlg_main"
+      title="YJP - GenerateCodeTool"
+      bigIcon="ICON_LOGO:32"
+      smallIcon="ICON_LOGO:16"
+      width="1000"
+      height="800"
+      minsize="1000,800"
+      resizable="0"
+      appWnd="1"
+      wndType="appWnd"
+      translucent="1"
+      sendWheel2Hover="1"
+      alpha="255">
+  <root>
+	  <caption pos="0,0,-0,-0" skin="skin_shadow">
+		  <caption name="main_caption" pos="12,12,-12,-12" colorBkgnd="#FFFFFF">
+
+			  <imgbtn name="btn_close" pos="-40,0" skin="skin_btn_close" tip="关闭"/>
+			  <imgbtn name="btn_max" pos="-70,0" skin="skin_btn_max" show="1" />
+			  <imgbtn name="btn_restore" pos="-70,0" skin="skin_btn_restore" show="0" />
+			  <imgbtn name="btn_min" pos="-100,0" skin="skin_btn_min"/>
+
+			  <caption pos="0,40,-0,-0" colorBkgnd="#FFFFFF" class="caption_top_border" font="face:微软雅黑,size:12">
+				  <caption pos="0,0,@250,-0" class="caption_right_border">
+					  <scrollview name="scrollview" pos="0,0,-0,-50" viewSize="-1,-1" sbSkin="skin_scrollbar" sbwid="0" scrollSpeed="40" >
+						  <text pos="5,10,@80,@30">毫米像素比例：</text>
+						  <edit name="edit_mm2pix" pos="[5,{0,@50,@30" password="0" number="1" inset="5,0,0,5" margin="1,1,1,2"/>
+
+						  <text pos="5,[10,@40,@30">X DPI：</text>
+						  <edit name="edit_xdpi" pos="[5,{0,@80,@30" password="0" number="1" inset="5,0,0,5" margin="1,1,1,2"/>
+
+						  <text pos="5,[10,@40,@30">Y DPI：</text>
+						  <edit name="edit_ydpi" pos="[5,{0,@80,@30" password="0" number="1" inset="5,0,0,5" margin="1,1,1,2"/>
+
+						  <text pos="5,[10,@40,@30" font="face:微软雅黑,size:12">码制：</text>
+						  <combobox  font="face:微软雅黑,size:12" name="cbx_codetype" pos="[5,{0,@190,@30" dropDown="1" dropHeight="200" class="cls_edit" dotted="0" animateTime="100" btnSkin="skin_cbx_btn" focusable="0">
+							  <liststyle itemHeight="30"
+										 colorText="#000000"
+										 colorBkgnd="#FFFFFF"
+										 colorItemBkgnd="rgba(255,255,255,50)"
+										 colorItemHotBkgnd="rgb(210,210,210)"
+										 colorItemSelBkgnd="rgb(190,190,190)"
+										 font="face:微软雅黑,size:12"
+										 margin="1,0,1,1"
+										 sbSkin="skin_scrollbar" sbWid="8"/>
+							  <editstyle colorText="#000000" align="left" colorBkgnd="#FFFFFF" focusable="0"/>
+							  <items>
+							  </items>
+						  </combobox>
+
+						  <text pos="5,[10,@40,@30" font="face:微软雅黑,size:12">内容：</text>
+						  <edit name="edit_content"
+								multiLines="1"
+								inset="2,2,2,2"
+								class="cls_edit"
+								pos="[5,{0,@190,@80"
+								password="0"
+								wordWrap="1"
+								autoWordSel="1"
+								autoVscroll="1"
+								vscrollBar="1"
+								sbSkin="skin_scrollbar" sbWid="8"
+								font="face:微软雅黑,size:12"/>
+					  </scrollview>
+
+					  <imgbtn name="btn_generate" pos="-65,-30,@60,@25" skin="skin_btn_common" text="生成" font="face:微软雅黑,size:12"/>
+				  </caption>
+				  <caption pos="[0,{0,-0,-150" colorBkgnd="#ffffff" class="caption_bottom_border">
+					  <containerbox name="containerbox" pos="0,0,-0,-0"></containerbox>
+				  </caption>
+			  </caption>
+		  </caption>
     </caption>
-    <window pos="5,[2,-5,-5">
-      <text pos="|0,|0" offset="-0.5,-0.5">这是一个由SOUI向导生成的APP框架</text>
-      <button pos="|0,[" inset="4,4,4,4" name="zh_cn" offset="-1.1,0" text="lang_cn"/>
-      <button pos="|0,[" inset="4,4,4,4" name="jp" offset="-1.1,0" text="lang_jp"/>
-    </window>
   </root>
 </SOUI>

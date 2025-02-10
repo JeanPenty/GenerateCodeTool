@@ -14,6 +14,22 @@
 
   <IMG>
   </IMG>
+	<PNG>
+		<file name="IDB_PNG_SHADOW" path="image\shadow.png"/>
+		<file name="IDB_PNG_BTNMIN" path="image\btn_min.png" />
+		<file name="IDB_PNG_BTNMAX" path="image\btn_max.png" />
+		<file name="IDB_PNG_BTNRESTORE" path="image\btn_restore.png" />
+		<file name="IDB_PNG_BTNCLOSE" path="image\btn_close.png" />
+		<file name="IDB_PNG_BTNMENU" path="image\btn_menu.png" />
+		<file name="IDB_PNG_BTNSKIN" path="image\btn_skin.png" />
+		<file name="IDB_PNG_CBXBTN" path="image\cbx_btn.png" />
+
+		<file name="IDB_PNG_NCBKIMAGE" path="image\nc_background.png" />
+
+		<file name="IDB_PNG_SB" path="image\sb.png" />
+
+		<file name="IDB_PNG_BTNCOMMON" path="image\btn_common.png" />
+	</PNG>
   <ICON>
     <file name="ICON_LOGO"  path="image\soui.ico"/>
   </ICON>
