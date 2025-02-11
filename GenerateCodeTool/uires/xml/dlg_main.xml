@@ -26,14 +26,14 @@
 						  <text pos="5,10,@80,@30">毫米像素比例：</text>
 						  <edit name="edit_mm2pix" pos="[5,{0,@50,@30" password="0" number="1" inset="5,0,0,5" margin="1,1,1,2"/>
 
-						  <text pos="5,[10,@40,@30">X DPI：</text>
+						  <text pos="5,[10,@50,@30">X DPI：</text>
 						  <edit name="edit_xdpi" pos="[5,{0,@80,@30" password="0" number="1" inset="5,0,0,5" margin="1,1,1,2"/>
 
-						  <text pos="5,[10,@40,@30">Y DPI：</text>
+						  <text pos="5,[10,@50,@30">Y DPI：</text>
 						  <edit name="edit_ydpi" pos="[5,{0,@80,@30" password="0" number="1" inset="5,0,0,5" margin="1,1,1,2"/>
 
-						  <text pos="5,[10,@40,@30" font="face:微软雅黑,size:12">码制：</text>
-						  <combobox  font="face:微软雅黑,size:12" name="cbx_codetype" pos="[5,{0,@190,@30" dropDown="1" dropHeight="200" class="cls_edit" dotted="0" animateTime="100" btnSkin="skin_cbx_btn" focusable="0">
+						  <text pos="5,[10,@50,@30" font="face:微软雅黑,size:12">码制：</text>
+						  <combobox  font="face:微软雅黑,size:12" name="cbx_codetype" pos="[5,{0,@180,@30" dropDown="1" dropHeight="200" class="cls_edit" dotted="0" animateTime="100" btnSkin="skin_cbx_btn" focusable="0">
 							  <liststyle itemHeight="30"
 										 colorText="#000000"
 										 colorBkgnd="#FFFFFF"
@@ -48,12 +48,12 @@
 							  </items>
 						  </combobox>
 
-						  <text pos="5,[10,@40,@30" font="face:微软雅黑,size:12">内容：</text>
+						  <text pos="5,[10,@50,@30" font="face:微软雅黑,size:12">内容：</text>
 						  <edit name="edit_content"
 								multiLines="1"
 								inset="2,2,2,2"
 								class="cls_edit"
-								pos="[5,{0,@190,@80"
+								pos="[5,{0,@180,@80"
 								password="0"
 								wordWrap="1"
 								autoWordSel="1"
@@ -61,6 +61,12 @@
 								vscrollBar="1"
 								sbSkin="skin_scrollbar" sbWid="8"
 								font="face:微软雅黑,size:12"/>
+
+						  <text pos="5,[10,@50,@30">长(mm)：</text>
+						  <edit name="edit_width" pos="[5,{0,@80,@30" password="0" number="1" inset="5,0,0,5" margin="1,1,1,2"/>
+
+						  <text pos="5,[10,@50,@30">宽(mm)：</text>
+						  <edit name="edit_height" pos="[5,{0,@80,@30" password="0" number="1" inset="5,0,0,5" margin="1,1,1,2"/>
 					  </scrollview>
 
 					  <imgbtn name="btn_generate" pos="-65,-30,@60,@25" skin="skin_btn_common" text="生成" font="face:微软雅黑,size:12"/>

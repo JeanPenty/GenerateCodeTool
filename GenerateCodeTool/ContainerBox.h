@@ -23,6 +23,8 @@ private:
 	SStringW	m_sstrYDPI;
 	SStringW	m_sstrCodeType;
 	SStringW	m_sstrContent;
+	SStringW	m_sstrWidth;
+	SStringW	m_sstrHeight;
 
 public:
 	void SetMM2Pix(SStringW& sstrMM2Pix);
@@ -30,5 +32,7 @@ public:
 	void SetYDPI(SStringW& sstrYDPI);
 	void SetCodeType(SStringW& sstrCodeType);
 	void SetContent(SStringW& sstrContnet);
+	void SetWidth(SStringW& sstrWidth);
+	void SetHeight(SStringW& sstrHeight);
 };
 
