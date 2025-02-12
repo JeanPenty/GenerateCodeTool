@@ -7,9 +7,9 @@ ContainerBox::ContainerBox(void)
 	m_sstrXDPI = L"300";
 	m_sstrYDPI = L"300";
 	m_sstrCodeType = L"BARCODE_CODE128";
-	m_sstrContent = L"1234567890";
-	m_sstrWidth = L"50";
-	m_sstrHeight = L"20";
+	m_sstrContent = L"012345";
+	m_sstrWidth = L"200";
+	m_sstrHeight = L"80";
 }
 
 ContainerBox::~ContainerBox(void)
@@ -84,12 +84,19 @@ void ContainerBox::OnPaint(IRenderTarget* pRT)
 
 	if (m_sstrCodeType == L"BARCODE_CODE128")
 	{
+		SStringW sstrSubset = m_sstrContent.GetAt(0);
 		std::string strContent = S_CW2A(m_sstrContent);
 		struct zint_symbol* symbol;
 		symbol = ZBarcode_Create();
 		symbol->symbology = BARCODE_CODE128;
-		symbol->input_mode = DATA_MODE; //数据编码格式
-		symbol->option_1 = 0;   //0 自动选择子集、1 强制使用子集A、2 强制使用子集B、3 强制使用子集C
+		symbol->input_mode |= EXTRA_ESCAPE_MODE; //数据编码格式
+
+// 		if (sstrSubset == L"0")	symbol->option_1 = 0;
+// 		if (sstrSubset == L"1")	symbol->option_1 = 1;
+// 		if (sstrSubset == L"2")	symbol->option_1 = 2;
+// 		if (sstrSubset == L"3")	symbol->option_1 = 3;
+
+		//symbol->option_1 = 1;   //0 自动选择子集、1 强制使用子集A、2 强制使用子集B、3 强制使用子集C
 
 		int nRet = ZBarcode_Encode_and_Buffer_Vector(symbol, (unsigned char*)strContent.c_str(), strContent.size(), 0);
 		if (nRet == 0)
@@ -174,36 +181,35 @@ void ContainerBox::OnPaint(IRenderTarget* pRT)
 		* 如果启用 2 位校验码，则需要在 1 位校验码的基础上再计算一次校验码，计算出的结果即为第2位校验码，然后将第二位的校验码也附加到条码数据的末尾。
 		*/
 
-// 		int nCheckType = 0;  //0 不校验、1 一位校验位、2 二位校验位
-// 		if (nCheckType == 1)
-// 		{
-// 			//从右到左分配权重
-// 			SStringW sstrCheckOne;
-// 			std::vector<int> vecCheckOne;
-// 			int nLength = m_sstrContent.GetLength();
-// 			for (int i = 0; i < nLength; i++)
-// 			{
-// 				SStringW sstrChar = m_sstrContent.GetAt(i);
-// 				std::string strChar = S_CW2A(sstrChar);
-// 				if (sstrChar == L"-")  vecCheckOne.push_back(10);
-// 				else
-// 				{
-// 					int nChar = std::stoi(strChar.c_str());
-// 					vecCheckOne.push_back(nChar);
-// 				}
-// 			}
-// 			
-// 			int nTmp = 0;
-// 			for (int i = 0; i < vecCheckOne.size(); i++)
-// 			{
-// 				int nDataWeight = vecCheckOne.size() - i;
-// 				nTmp += nDataWeight * vecCheckOne[i];
-// 			}
-// 			int nCheck = nTmp % 11;
-// 
-// 			sstrCheckOne.Format(L"%d", nCheck);
-// 			m_sstrContent += sstrCheckOne;
-// 		}
+		int nCheckType = 1;  //0 不校验、1 一位校验位、2 二位校验位
+		if (nCheckType == 1)
+		{
+			//从右到左分配权重
+			SStringW sstrCheckOne;
+			std::vector<int> vecCheckOne;
+			int nLength = m_sstrContent.GetLength();
+			for (int i = 0; i < nLength; i++)
+			{
+				SStringW sstrChar = m_sstrContent.GetAt(i);
+				if (sstrChar == L"-")  vecCheckOne.push_back(10);
+				else
+				{
+					int nChar = std::stoi(sstrChar.c_str());
+					vecCheckOne.push_back(nChar);
+				}
+			}
+			
+			int nTmp = 0;
+			for (int i = 0; i < vecCheckOne.size(); i++)
+			{
+				int nDataWeight = vecCheckOne.size() - i;
+				nTmp += nDataWeight * vecCheckOne[i];
+			}
+			int nCheck = nTmp % 11;
+
+			sstrCheckOne.Format(L"%d", nCheck);
+			//m_sstrContent += sstrCheckOne;
+		}
 
 		std::string strContent = S_CW2A(m_sstrContent);
 
@@ -211,7 +217,7 @@ void ContainerBox::OnPaint(IRenderTarget* pRT)
 		symbol = ZBarcode_Create();
 		symbol->symbology = BARCODE_CODE11;
 		symbol->input_mode = DATA_MODE; //数据编码格式
-		//symbol->option_1 = 0;   //0 禁用校验位、1 启用 1 位校验位、2 启用 2 位校验位
+		symbol->option_2 = 2;   //默认添加俩校验位、1 添加一个校验位、2 不添加校验位
 		int nRet = ZBarcode_Encode_and_Buffer_Vector(symbol, (unsigned char*)strContent.c_str(), strContent.size(), 0);
 		if (nRet == 0)
 		{
@@ -299,7 +305,7 @@ void ContainerBox::OnPaint(IRenderTarget* pRT)
 		symbol = ZBarcode_Create();
 		symbol->symbology = BARCODE_C25STANDARD;
 		symbol->input_mode = DATA_MODE; //数据编码格式
-		//symbol->option_1 = 0;   //0 禁用校验位、1 启用 1 位校验位、2 启用 2 位校验位
+		symbol->option_2 = 0;   //0 禁用校验位、1 启用校验位
 		int nRet = ZBarcode_Encode_and_Buffer_Vector(symbol, (unsigned char*)strContent.c_str(), strContent.size(), 0);
 		if (nRet == 0)
 		{
