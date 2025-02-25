@@ -892,12 +892,23 @@ void ContainerBox::OnPaint(IRenderTarget* pRT)
 	{
 		std::string strContent = S_CW2A(m_sstrContent);
 
+		std::string strAppend;
+		std::string strPre;
+		size_t szPos = strContent.find_first_of("+");
+		if (szPos != std::string::npos)
+		{
+			strPre = strContent.substr(0, szPos);
+			strAppend = strContent.substr(szPos + 1);
+		}
+
 		struct zint_symbol* symbol;
 		symbol = ZBarcode_Create();
 		symbol->symbology = BARCODE_EANX;
 		symbol->input_mode = DATA_MODE; //数据编码格式
-		//symbol->option_1 = 0;   //0 禁用校验位、1 启用 1 位校验位、2 启用 2 位校验位
+		symbol->option_1 = 0;   //0 禁用校验位、1 启用 1 位校验位、2 启用 2 位校验位
+		ZBarcode_Encode_and_Buffer_Vector(symbol, (unsigned char*)strPre.c_str(), strPre.size(), 0);
 		int nRet = ZBarcode_Encode_and_Buffer_Vector(symbol, (unsigned char*)strContent.c_str(), strContent.size(), 0);
+		//int nRet = ZBarcode_Encode_and_Buffer_Vector(symbol, (unsigned char*)strAppend.c_str(), strAppend.size(), 0);
 		if (nRet == 0)
 		{
 			ZBarcode_Print(symbol, 0);
@@ -1998,11 +2009,15 @@ void ContainerBox::OnPaint(IRenderTarget* pRT)
 	{
 		std::string strContent = S_CW2A(m_sstrContent);
 
+		//处理校验码
+		/*
+		* 如果输入的
+		*/
+
 		struct zint_symbol* symbol;
 		symbol = ZBarcode_Create();
 		symbol->symbology = BARCODE_UPCA;
 		symbol->input_mode = DATA_MODE; //数据编码格式
-		//symbol->option_1 = 0;   //0 禁用校验位、1 启用 1 位校验位、2 启用 2 位校验位
 		int nRet = ZBarcode_Encode_and_Buffer_Vector(symbol, (unsigned char*)strContent.c_str(), strContent.size(), 0);
 		if (nRet == 0)
 		{
